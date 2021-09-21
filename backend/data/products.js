@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Renault Megane 1.5 DCI porlasztó',
     image: '/images/renault_megane_porlaszto.jpg',
     description:
@@ -16,7 +15,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '2',
     name: 'Audi A4 Lengéscsillapító',
     image: '/images/audi_a4_lengescsillapito.png',
     description:
@@ -32,7 +30,6 @@ const products = [
     numReviews: 3,
   },
   {
-    _id: '3',
     name: 'Ford Focus Gyújtógyertya',
     image: '/images/ford_focus_gyujtogyertya.png',
     description:
@@ -48,7 +45,6 @@ const products = [
     numReviews: 6,
   },
   {
-    _id: '4',
     name: 'Volkswagen Golf III olajszűrő',
     image: '/images/vw_golf3_olajszuro.jpeg',
     description:
