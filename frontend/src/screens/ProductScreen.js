@@ -77,7 +77,7 @@ const addToCartHandler = () => {
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <Row>
-                      <Col>Qty</Col>
+                      <Col>Mennyiség</Col>
                       <Col>
                         <Form.Control as='select' value={qty} onChange={(e) => setQty(e.target.value)}>
                           {
