@@ -21,7 +21,35 @@ const authUser = asyncHandler(async(req, res) => {
     }
 })
 
+const registerUser = asyncHandler(async(req, res) => {
+    const { name, email, password } = req.body
 
+    const userExist = await User.findOne({ email })
+
+    if(userExist) {
+        res.status(400)
+        throw new Error('A felhasználó már létezik!')
+    }
+
+    const user = await User.create({
+        name,
+        email,
+        password
+    })
+
+    if(user) {
+        res.status(201).json({
+            _id:user._id,
+            name: user.name,
+            emial: user.email,
+            isAdmin: user.isAdmin,
+            token: generateToken(user._id)
+        })
+    } else {
+        res.status(400)
+        throw new Error('Hibás felhasználó adatok!')
+    }
+})
 
 const getUserProfile = asyncHandler(async(req, res) => {
    const user = await User.findById(req.user._id)
@@ -41,5 +69,6 @@ const getUserProfile = asyncHandler(async(req, res) => {
 
 export {
     authUser,
-    getUserProfile
+    getUserProfile,
+    registerUser
 }
