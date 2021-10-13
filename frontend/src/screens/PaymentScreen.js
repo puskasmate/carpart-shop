@@ -33,11 +33,11 @@ const PaymentScreen = ( { history }) => {
                     <Form.Label as='legend'>Válassza ki a fizetés módját!</Form.Label>
                     <Col>
                         <Form.Check type='radio' label='PayPal vagy Bankkártya' id='PayPal' name='paymentMethod' value='PayPal' checked onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
-                        <Form.Check type='radio' label='Készpénz' id='cash' name='paymentMethod' value='Készpénz' onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
+                        <Form.Check type='radio' label='Készpénz' id='cash' name='paymentMethod' value='cash' onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
                     </Col>
                 </Form.Group>
                 <Row><p></p></Row>
-                <Button type='submit' variant='primary w-100'>
+                <Button type='submit' variant='primary'>
                     Tovább
                 </Button>
             </Form>
