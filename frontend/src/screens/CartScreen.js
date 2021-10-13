@@ -74,7 +74,7 @@ const CartScreen = ({ match, location, history }) => {
                             {cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)} HUF
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <Button className='btn btn-secondary w-100' type='button' disabled={cartItems.length === 0} onClick={checkoutHandler}>
+                            <Button className='btn btn-primary w-100' type='button' disabled={cartItems.length === 0} onClick={checkoutHandler}>
                                 Tovább a fizetéshez
                             </Button>
                         </ListGroup.Item>
