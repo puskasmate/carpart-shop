@@ -1,4 +1,4 @@
-import { ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_CREATE_FAIL, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_PAY_FAIL, ORDER_PAY_SUCCESS, ORDER_PAY_REQUEST } from '../constants/orderConstants'
+import { ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_CREATE_FAIL, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_PAY_FAIL, ORDER_PAY_SUCCESS, ORDER_PAY_REQUEST, LIST_USER_ORDERS_REQUEST, LIST_USER_ORDERS_SUCCESS, LIST_USER_ORDERS_FAIL } from '../constants/orderConstants'
 import axios from 'axios'
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -85,6 +85,35 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
     } catch (error) {
         dispatch({
             type: ORDER_PAY_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+export const listUsersOrders = () => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: LIST_USER_ORDERS_REQUEST
+        })
+
+        const { userLogin: { userInfo } } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const { data } = await axios.get(`/api/orders/myorders`, config)
+
+        dispatch({
+            type: LIST_USER_ORDERS_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: LIST_USER_ORDERS_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
         })
     }
