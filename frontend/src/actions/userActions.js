@@ -50,7 +50,7 @@ export const register = (name, email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('/api/users', { name, email, password })
+        const { data } = await axios.post('/api/users', { name, email, password }, config)
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
@@ -181,7 +181,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
             }
         }
 
-        const { data } = await axios.delete(`/api/users/${id}`, config)
+        await axios.delete(`/api/users/${id}`, config)
 
         dispatch({
             type: USER_DELETE_SUCCESS,
