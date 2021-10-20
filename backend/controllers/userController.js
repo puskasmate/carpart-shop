@@ -92,9 +92,18 @@ const updateUserProfile = asyncHandler(async(req, res) => {
     }
  })
 
+ const getUsers = asyncHandler(async(req, res) => {
+    const user = await User.find({})
+    res.json(user)
+ 
+    
+ })
+ 
+
 export {
     authUser,
     getUserProfile,
     registerUser,
-    updateUserProfile
+    updateUserProfile,
+    getUsers
 }
