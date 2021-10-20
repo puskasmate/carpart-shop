@@ -37,6 +37,19 @@ const Header = () => {
                             ) : <LinkContainer to='login'>
                             <Nav.Link href="/login"><i className="fas fa-sign-in-alt"></i> Sign in</Nav.Link>
                         </LinkContainer> }
+                        {userInfo && userInfo.isAdmin && (
+                            <NavDropdown title='Admin' id ='adminmenu'>
+                            <LinkContainer to='/admin/userlist'>
+                                <NavDropdown.Item>Felhasználók</NavDropdown.Item>
+                            </LinkContainer>
+                            <LinkContainer to='/admin/productlist'>
+                                <NavDropdown.Item>Termékek</NavDropdown.Item>
+                            </LinkContainer>
+                            <LinkContainer to='/admin/orderlist'>
+                                <NavDropdown.Item>Rendelések</NavDropdown.Item>
+                            </LinkContainer>
+                        </NavDropdown>
+                        )}
                             
         
                         </Nav>
