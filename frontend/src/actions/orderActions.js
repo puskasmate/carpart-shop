@@ -1,4 +1,4 @@
-import { ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_CREATE_FAIL, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_PAY_FAIL, ORDER_PAY_SUCCESS, ORDER_PAY_REQUEST, LIST_USER_ORDERS_REQUEST, LIST_USER_ORDERS_SUCCESS, LIST_USER_ORDERS_FAIL } from '../constants/orderConstants'
+import { ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_CREATE_FAIL, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_PAY_FAIL, ORDER_PAY_SUCCESS, ORDER_PAY_REQUEST, LIST_USER_ORDERS_REQUEST, LIST_USER_ORDERS_SUCCESS, LIST_USER_ORDERS_FAIL, ORDER_CREATE_RESET } from '../constants/orderConstants'
 import axios from 'axios'
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -20,6 +20,10 @@ export const createOrder = (order) => async (dispatch, getState) => {
 
         dispatch({
             type: ORDER_CREATE_SUCCESS,
+            payload: data
+        })
+        dispatch({
+            type: ORDER_CREATE_RESET,
             payload: data
         })
 
