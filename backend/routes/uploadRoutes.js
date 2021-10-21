@@ -1,7 +1,6 @@
 import path from 'path'
 import express from 'express'
 import multer from 'multer'
-import { createBrotliCompress } from 'zlib'
 const router = express.Router()
 
 const storage = multer.diskStorage({
@@ -21,7 +20,7 @@ function checkFileType(file, cb) {
     if(extname && mimetype) {
         return cb(null, true)
     } else {
-        createBrotliCompress('Csak képfájl engedélyezett!')
+        cb('Csak képfájl engedélyezett!')
     }
 }
 
