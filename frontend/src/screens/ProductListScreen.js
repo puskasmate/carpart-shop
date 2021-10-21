@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listProducts, deleteProduct, createProduct } from '../actions/productActions'
-import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
+import { PRODUCT_CREATE_RESET, PRODUCT_DELETE_RESET } from '../constants/productConstants'
 
 const ProductListScreen = ({ history, match }) => {
     const dispatch = useDispatch()
@@ -24,10 +24,15 @@ const ProductListScreen = ({ history, match }) => {
 
     useEffect(() => {
         dispatch({ type: PRODUCT_CREATE_RESET })
+        dispatch({ type: PRODUCT_DELETE_RESET })
 
-        if(!userInfo.isAdmin) {
+        try {
+            if(!userInfo.isAdmin) {
+                history.push('/login')
+            }
+        } catch (error) {
             history.push('/login')
-        }
+        } 
 
         if(successCreate) {
             history.push(`/admin/product/${createdProduct._id}/edit`)
