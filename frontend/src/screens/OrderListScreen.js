@@ -23,11 +23,6 @@ const OrderListScreen = ({ history }) => {
         }
     }, [dispatch, history, userInfo])
 
-    const deleteHandler = (id) => {
-        if(window.confirm('Biztosan törli a kívánt rendelést?')) {
-            
-        }
-    }
 
     return (
         <>

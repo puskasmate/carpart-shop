@@ -39,7 +39,7 @@ const ProductListScreen = ({ history, match }) => {
         } else {
             dispatch(listProducts())
         }
-    }, [dispatch, history, userInfo, successDelete, successCreate, createProduct])
+    }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct])
 
     const deleteHandler = (id) => {
         if(window.confirm('Biztosan törli a kívánt terméket?')) {
