@@ -28,7 +28,7 @@ const Header = () => {
                         <Route render={({ history }) => <SearchBox history={history}/>} />
                         <Nav className="ms-auto">
                             <LinkContainer to ='/cart'>
-                                <Nav.Link href="/cart"><i className="fas fa-shopping-cart"></i> Cart</Nav.Link>
+                                <Nav.Link href="/cart"><i className="fas fa-shopping-cart"></i> Kosár</Nav.Link>
                             </LinkContainer>
                             {userInfo ? (
                                 <NavDropdown title={userInfo.name} id ='username'>
