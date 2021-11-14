@@ -5,8 +5,9 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
+import { clearCart } from '../actions/cartActions'
 
-const Header = () => {
+const Header = ({ history }) => {
     const dispatch = useDispatch()
 
     const userLogin = useSelector(state => state.userLogin)
@@ -14,6 +15,7 @@ const Header = () => {
 
     const logoutHandler = () => {
         dispatch(logout())
+        dispatch(clearCart())
     }
     return (
         <header>
@@ -38,7 +40,7 @@ const Header = () => {
                                     <NavDropdown.Item onClick={logoutHandler}>Kijelentkezés</NavDropdown.Item>
                                 </NavDropdown>
                             ) : <LinkContainer to='/login'>
-                            <Nav.Link href="/login"><i className="fas fa-sign-in-alt"></i> Sign in</Nav.Link>
+                            <Nav.Link href="/login"><i className="fas fa-sign-in-alt"></i> Bejelentkezés</Nav.Link>
                         </LinkContainer> }
                         {userInfo && userInfo.isAdmin && (
                             <NavDropdown title='Admin' id ='adminmenu'>
