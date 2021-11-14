@@ -89,6 +89,28 @@ const updateProduct = asyncHandler(async(req, res) => {
     
 })
 
+const updateProductQty = asyncHandler(async(req, res) => {
+    console.log("ASD")
+    console.log(req.body)
+    console.log("ASD")
+
+    const { qty } = req.body
+    const productt = await Product.findById(req.params.id)
+
+    if(productt) {
+        productt.countInStock = productt.countInStock - qty
+
+        const updatedProduct = await productt.save()
+        res.json(updatedProduct)
+    } else {
+        res.status(404)
+        console.log(req.body)
+        throw new Error('Termék nem található!')
+    }
+
+    
+})
+
 const createReview = asyncHandler(async(req, res) => {
     const { rating, comment } = req.body
     
@@ -138,5 +160,6 @@ export {
     createProduct,
     updateProduct,
     createReview,
-    getTopProducts
+    getTopProducts,
+    updateProductQty
 }

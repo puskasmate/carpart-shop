@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
+import { updateProductQty } from '../actions/productActions'
 
 const PlaceOrderScreen = ({ history }) => {
     const dispatch = useDispatch()
@@ -20,6 +21,9 @@ const PlaceOrderScreen = ({ history }) => {
     const orderCreate = useSelector(state => state.orderCreate)
     const { order, success, error } = orderCreate
 
+    const productUpdateQty = useSelector(state => state.productUpdateQty)
+    const { loading:loadingUpdate, error:errorUpdate, success:successUpdate } = productUpdateQty
+
     useEffect(() => {
         if(success) {
             history.push(`/order/${order._id}`)
@@ -28,14 +32,16 @@ const PlaceOrderScreen = ({ history }) => {
     }, [history, success])
 
     const placeOrderHandler = () => {
-        dispatch(createOrder({
+        const newOrder = {
             orderItems: cart.cartItems,
             shippingAddress: cart.shippingAddress,
             paymentMethod: cart.paymentMethod,
             itemsPrice: cart.itemsPrice,
             shippingPrice: cart.shippingPrice,
             totalPrice: cart.totalPrice
-        }))
+        }
+        dispatch(createOrder(newOrder))
+        newOrder.orderItems.map(item => dispatch(updateProductQty(item.product, item.qty)))
     }
     return (
         <>
