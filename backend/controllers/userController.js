@@ -11,7 +11,7 @@ const authUser = asyncHandler(async(req, res) => {
         res.json({
             _id:user._id,
             name: user.name,
-            emial: user.email,
+            email: user.email,
             isAdmin: user.isAdmin,
             token: generateToken(user._id)
         })
@@ -95,8 +95,6 @@ const updateUserProfile = asyncHandler(async(req, res) => {
  const getUsers = asyncHandler(async(req, res) => {
     const user = await User.find({})
     res.json(user)
- 
-    
  })
 
  const deleteUser = asyncHandler(async(req, res) => {
