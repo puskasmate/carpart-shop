@@ -16,7 +16,9 @@ const SearchBox = ({ history }) => {
     return (
         <>
         <Form inline className='ms-5'>
-            <Form.Control type='text' name='s' onChange={(e) => setKeyword(e.target.value)} placeholder='Termék keresése...' ></Form.Control>
+            <Form.Control type='text' name='s' onChange={(e) => setKeyword(e.target.value)} placeholder='Termék keresése...' onKeyPress={e => {
+  if (e.key === 'Enter') submitHandler(e);
+}}></Form.Control>
         </Form>
         <Button type='submit' className='p-1 ms-2' onClick={submitHandler} >Keresés</Button>
         
